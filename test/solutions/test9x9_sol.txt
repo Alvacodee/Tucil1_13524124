@@ -1,0 +1,30 @@
+Queens Puzzle Solution
+========================================
+
+Solved Board (9x9):
+
+   A  A  A  B  B  C  C  Q  D 
+   A  B  B  B  Q  C  E  C  D 
+   A  B  B  B  D  C  Q  C  D 
+   A  Q  A  B  D  C  C  C  D 
+   B  B  B  B  D  Q  D  D  D 
+   F  G  G  Q  D  D  H  D  D 
+   Q  G  I  G  D  D  H  D  D 
+   F  G  Q  G  D  D  H  D  D 
+   F  G  G  G  D  D  H  H  Q 
+
+Queen Positions:
+  1. Baris 1, Kolom 8 (C)
+  2. Baris 2, Kolom 5 (B)
+  3. Baris 3, Kolom 7 (E)
+  4. Baris 4, Kolom 2 (A)
+  5. Baris 5, Kolom 6 (D)
+  6. Baris 6, Kolom 4 (G)
+  7. Baris 7, Kolom 1 (F)
+  8. Baris 8, Kolom 3 (I)
+  9. Baris 9, Kolom 9 (H)
+
+========================================
+Iterations : 7659
+Time       : 3.49 ms
+Status     : SOLVED

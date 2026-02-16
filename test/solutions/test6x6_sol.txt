@@ -1,0 +1,14 @@
+==================================================
+       QUEENS PUZZLE SOLUTION       
+==================================================
+
+Board Size : 6x6
+Status     : NO SOLUTION
+Time Taken : 0.20 ms
+Iterations : 420
+
+--------------------------------------------------
+
+Tidak ada konfigurasi yang memenuhi aturan permainan.
+
+==================================================

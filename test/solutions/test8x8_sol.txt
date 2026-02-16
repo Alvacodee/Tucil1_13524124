@@ -1,0 +1,36 @@
+==================================================
+       QUEENS PUZZLE SOLUTION       
+==================================================
+
+Board Size : 8x8
+Status     : SOLVED
+Time Taken : 0.43 ms
+Iterations : 868
+
+--------------------------------------------------
+
+Visualisasi Papan:
+(Q = Ratu, Huruf = Warna Wilayah)
+
+   Q  A  D  G  C  E  B  E 
+   B  H  E  B  Q  B  G  C 
+   D  F  F  B  G  H  Q  D 
+   G  Q  E  A  H  A  H  E 
+   B  B  G  Q  F  G  E  C 
+   E  E  G  F  G  Q  F  F 
+   H  B  E  B  C  G  D  Q 
+   F  F  Q  E  G  C  H  B 
+
+--------------------------------------------------
+
+Detail Posisi Ratu:
+   1. Baris 1 , Kolom 1  (Wilayah C)
+   2. Baris 2 , Kolom 5  (Wilayah F)
+   3. Baris 3 , Kolom 7  (Wilayah E)
+   4. Baris 4 , Kolom 2  (Wilayah A)
+   5. Baris 5 , Kolom 4  (Wilayah D)
+   6. Baris 6 , Kolom 6  (Wilayah G)
+   7. Baris 7 , Kolom 8  (Wilayah B)
+   8. Baris 8 , Kolom 3  (Wilayah H)
+
+==================================================
