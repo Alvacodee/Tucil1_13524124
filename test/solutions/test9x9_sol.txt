@@ -26,5 +26,5 @@ Queen Positions:
 
 ========================================
 Iterations : 7659
-Time       : 3.49 ms
+Time       : 3.39 ms
 Status     : SOLVED
