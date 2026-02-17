@@ -68,7 +68,7 @@ found : boolean { Penanda jika solusi ditemukan di tingkat rekursi bawahnya }
         -> Found
     
     while (col <= n-1) and (not found) do
-        if valid(row, col) then
+        if is_valid(row, col) then
             place_queen(row, col)
             if solve(row + 1):
                 -> Found

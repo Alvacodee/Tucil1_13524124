@@ -1,0 +1,64 @@
+Queens Puzzle Solution
+========================================
+
+Solved Board (26x26):
+
+   Q  D  Q  I  S  X  I  C  Z  Q  P  H  Z  I  S  X  G  R  D  Z  R  U  W  S  J  D 
+   F  L  Q  P  P  R  F  O  A  K  I  Z  O  M  S  M  L  B  X  S  V  N  P  R  W  P 
+   J  R  K  Q  N  Q  R  G  N  P  D  V  E  W  B  E  W  U  W  X  A  P  F  G  K  X 
+   C  Q  K  S  Z  F  S  A  O  U  Q  T  O  I  P  D  Z  Y  Z  F  Q  B  M  Q  Q  C 
+   Z  S  V  Q  M  S  A  V  N  N  R  B  C  G  N  Y  O  J  Z  N  A  Q  H  F  G  C 
+   G  W  O  A  S  Y  Q  B  O  H  Z  H  Y  I  M  X  R  D  Z  Q  D  P  W  D  N  D 
+   W  M  T  G  Q  J  A  V  L  S  J  U  C  R  Z  V  H  V  A  O  Y  Q  F  F  N  V 
+   U  D  D  B  L  V  O  Q  A  X  Z  G  J  L  I  W  D  Y  X  K  A  I  J  Y  B  I 
+   A  F  R  A  W  I  B  G  F  W  Q  G  F  V  P  G  C  Z  W  G  Y  G  B  Q  U  C 
+   C  N  H  L  A  V  A  U  Q  O  T  F  D  F  S  F  G  W  G  U  E  M  G  P  T  L 
+   B  O  R  P  F  P  C  Q  Q  Q  C  Q  O  M  D  E  M  E  C  W  C  L  A  E  D  C 
+   F  E  Q  U  N  U  U  N  A  Q  K  A  V  N  W  A  H  L  E  T  X  P  W  F  N  N 
+   X  I  O  B  J  C  U  E  G  E  R  C  Q  D  R  G  L  L  E  V  U  U  S  S  W  I 
+   U  H  T  J  U  K  D  J  Q  L  N  I  X  G  A  S  V  Q  X  U  K  C  E  N  L  S 
+   S  O  X  T  I  E  O  L  L  P  D  W  H  T  W  X  E  F  P  L  T  L  U  Q  K  Q 
+   P  M  Q  V  T  D  T  B  B  I  G  E  A  K  M  Z  G  K  X  Z  Q  Q  N  R  E  E 
+   T  R  P  H  S  W  O  K  A  X  F  Z  W  D  H  C  F  U  A  P  Y  J  P  U  X  Q 
+   K  Z  X  M  E  C  U  C  J  E  O  E  V  I  L  Y  E  I  F  D  X  D  Q  H  Z  Y 
+   Z  S  L  T  S  X  O  K  S  J  C  T  X  X  A  A  Q  E  V  G  P  E  D  O  V  Z 
+   I  R  U  L  R  K  Q  C  G  A  A  D  K  V  J  E  L  F  G  B  Q  V  T  H  O  Q 
+   U  H  V  D  J  U  Q  V  E  F  J  R  A  Z  T  W  E  I  Q  T  M  F  Y  B  H  H 
+   B  P  D  N  Q  N  Z  H  C  A  C  Y  X  E  Q  U  Z  T  Z  N  H  S  S  E  H  B 
+   U  K  J  P  O  I  I  J  G  M  A  A  F  T  J  J  S  F  J  Q  R  Y  T  R  Y  I 
+   S  Y  I  L  H  D  R  I  Z  W  M  R  Z  N  W  Q  U  V  D  W  J  S  E  J  O  J 
+   S  R  G  Q  R  M  O  Y  C  N  P  Q  W  H  N  E  B  B  Q  X  E  G  J  T  Q  I 
+   L  T  G  A  Y  X  N  P  X  S  O  L  R  Q  G  V  U  E  S  X  D  W  N  X  B  X 
+
+Queen Positions:
+  1. Baris 1, Kolom 1 (N)
+  2. Baris 2, Kolom 3 (S)
+  3. Baris 3, Kolom 6 (X)
+  4. Baris 4, Kolom 2 (O)
+  5. Baris 5, Kolom 4 (W)
+  6. Baris 6, Kolom 7 (U)
+  7. Baris 7, Kolom 5 (R)
+  8. Baris 8, Kolom 8 (Y)
+  9. Baris 9, Kolom 11 (B)
+  10. Baris 10, Kolom 9 (J)
+  11. Baris 11, Kolom 12 (K)
+  12. Baris 12, Kolom 10 (A)
+  13. Baris 13, Kolom 13 (D)
+  14. Baris 14, Kolom 18 (T)
+  15. Baris 15, Kolom 24 (Q)
+  16. Baris 16, Kolom 22 (P)
+  17. Baris 17, Kolom 26 (G)
+  18. Baris 18, Kolom 23 (Z)
+  19. Baris 19, Kolom 17 (C)
+  20. Baris 20, Kolom 21 (H)
+  21. Baris 21, Kolom 19 (M)
+  22. Baris 22, Kolom 15 (V)
+  23. Baris 23, Kolom 20 (F)
+  24. Baris 24, Kolom 16 (E)
+  25. Baris 25, Kolom 25 (I)
+  26. Baris 26, Kolom 14 (L)
+
+========================================
+Iterations : 441155
+Time       : 212.62 ms
+Status     : SOLVED

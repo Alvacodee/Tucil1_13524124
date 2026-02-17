@@ -1,0 +1,42 @@
+Queens Puzzle Solution
+========================================
+
+Solved Board (15x15):
+
+   Q  D  A  D  I  D  K  L  H  F  I  J  G  L  E 
+   O  H  Q  D  J  L  B  J  F  N  I  G  N  E  J 
+   F  K  A  B  Q  G  A  K  L  A  E  J  E  F  G 
+   F  M  D  K  E  H  Q  G  M  B  E  H  A  E  L 
+   N  G  A  Q  O  M  D  I  O  A  A  I  N  O  H 
+   M  I  G  A  N  I  F  C  M  I  J  M  Q  D  I 
+   A  O  H  G  I  C  N  I  Q  N  L  H  G  O  J 
+   I  O  H  N  L  I  N  B  J  F  L  Q  I  D  M 
+   D  N  I  E  N  M  K  B  B  Q  O  C  N  D  L 
+   G  I  M  A  N  F  C  Q  E  E  B  J  M  O  A 
+   D  C  A  O  F  G  A  B  I  B  H  B  O  N  Q 
+   L  H  M  K  F  L  E  G  F  C  Q  C  I  B  G 
+   F  D  H  E  F  Q  J  A  A  I  O  J  L  M  F 
+   L  Q  D  C  E  O  K  B  M  A  L  E  M  D  M 
+   B  D  L  E  D  L  F  F  N  O  F  H  C  Q  N 
+
+Queen Positions:
+  1. Baris 1, Kolom 1 (G)
+  2. Baris 2, Kolom 3 (M)
+  3. Baris 3, Kolom 5 (I)
+  4. Baris 4, Kolom 7 (H)
+  5. Baris 5, Kolom 4 (O)
+  6. Baris 6, Kolom 13 (J)
+  7. Baris 7, Kolom 9 (C)
+  8. Baris 8, Kolom 12 (F)
+  9. Baris 9, Kolom 10 (D)
+  10. Baris 10, Kolom 8 (L)
+  11. Baris 11, Kolom 15 (E)
+  12. Baris 12, Kolom 11 (A)
+  13. Baris 13, Kolom 6 (B)
+  14. Baris 14, Kolom 2 (K)
+  15. Baris 15, Kolom 14 (N)
+
+========================================
+Iterations : 8595
+Time       : 3.77 ms
+Status     : SOLVED

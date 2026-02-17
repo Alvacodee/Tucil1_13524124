@@ -1,0 +1,34 @@
+Queens Puzzle Solution
+========================================
+
+Solved Board (11x11):
+
+   Q  B  F  A  G  I  K  K  C  B  J 
+   I  I  D  Q  G  G  D  H  G  D  F 
+   A  Q  G  F  A  B  K  E  E  B  E 
+   I  B  G  A  Q  K  K  G  A  A  K 
+   G  D  H  G  K  A  H  F  I  I  Q 
+   F  F  Q  J  E  D  I  D  B  E  A 
+   B  E  J  B  G  K  B  Q  D  I  F 
+   I  G  G  K  C  Q  J  H  H  D  A 
+   K  J  C  B  K  I  C  K  Q  B  G 
+   B  F  C  K  G  K  Q  B  B  E  H 
+   F  E  K  G  K  K  F  B  G  Q  A 
+
+Queen Positions:
+  1. Baris 1, Kolom 1 (D)
+  2. Baris 2, Kolom 4 (B)
+  3. Baris 3, Kolom 2 (H)
+  4. Baris 4, Kolom 5 (J)
+  5. Baris 5, Kolom 11 (E)
+  6. Baris 6, Kolom 3 (K)
+  7. Baris 7, Kolom 8 (A)
+  8. Baris 8, Kolom 6 (C)
+  9. Baris 9, Kolom 9 (G)
+  10. Baris 10, Kolom 7 (F)
+  11. Baris 11, Kolom 10 (I)
+
+========================================
+Iterations : 550
+Time       : 0.45 ms
+Status     : SOLVED
