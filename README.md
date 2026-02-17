@@ -1,6 +1,6 @@
 # Queens Puzzle Solver
 
-Solusi untuk Queens Puzzle menggunakan algoritma Brute Force dengan Backtracking.
+Solusi untuk Queens Puzzle menggunakan algoritma Brute Force dengan Backtracking (Optimasi).
 
 Tugas Kecil 1 - IF2211 Strategi Algoritma
 
@@ -65,16 +65,16 @@ col : integer { Indeks kolom untuk mencoba penempatan ratu }
 found : boolean { Penanda jika solusi ditemukan di tingkat rekursi bawahnya }
 
     if row == n then
-        -> True
+        -> Found
     
     while (col <= n-1) and (not found) do
         if valid(row, col) then
             place_queen(row, col)
             if solve(row + 1):
-                -> True
+                -> Found
             remove_queen(row, col)
     
-    -> False
+    -> not(Found)
 ```
 
 **Kompleksitas:**
@@ -86,57 +86,14 @@ found : boolean { Penanda jika solusi ditemukan di tingkat rekursi bawahnya }
 - Region unik
 - Non-adjacent
 
-## Testing
 
-Test cases di folder `test/`:
-- tes4.txt (easy, <1ms)
-- tes6.txt (medium, ~10ms)
-- tes8.txt (hard, ~100ms)
+## Requirement and Installation
 
-Run batch test:
-```bash
-uv run python main.py
-# Pilih opsi 4
-```
+Refer to SETUP_GUIDE.md
 
-## Output
+## Compilation and Running
 
-Console:
-```
-Solution found in 45.23ms
-Iterations: 12,456
-```
-
-File txt:
-```
-Queens Puzzle Solution
-====================
-
-Board:
-
-  A  A  Q  B  C
-  A  B  B  Q  C
-  ...
-
-Statistics:
-Time: 45.23ms
-Iterations: 12,456
-```
-
-Image (PNG):
-- Solution dengan queens
-- Input vs output comparison
-
-## Performa
-
-| Board | Iterations | Time | Status |
-|-------|-----------|------|--------|
-| 4×4   | ~150      | 0.5ms | OK |
-| 6×6   | ~3.4K     | 8ms | OK |
-| 8×8   | ~45K      | 120ms | OK |
-| 10×10 | ~1.2M     | 8.5s | OK |
-
-*Test: Windows 11, Python 3.13, i5*
+Refer to SETUP_GUIDE.md
 
 ## Author
 
