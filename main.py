@@ -16,11 +16,11 @@ except ImportError as e:
     print(f"Error Import: {e}")
     sys.exit(1)
 
-# Fungsi Visualisasi CLI
+# --- Visualisasi CLI (Animasi) ---
 def cli_callback(row, col, placed, is_trying):
     if not is_trying: return True 
     
-    # Clear screen (Windows/Linux compatible)
+    # Clear screen
     os.system('cls' if os.name == 'nt' else 'clear')
     
     n = len(placed)
@@ -40,120 +40,155 @@ def cli_callback(row, col, placed, is_trying):
     time.sleep(0.05) 
     return True
 
-# Menu Functions
+# --- Fungsi Helper Tampilan ---
+def print_board_result(solver):
+    """Menampilkan hasil akhir board ke terminal"""
+    print("\n" + "-"*30)
+    print(f"HASIL AKHIR ({solver.n}x{solver.n})")
+    print("-"*30)
+    
+    for r in range(solver.n):
+        line = ""
+        for c in range(solver.n):
+            if solver.solution[r][c]:
+                line += " Q "
+            else:
+                line += " . "
+        print(line)
+    print("-"*30)
+    print(f"Durasi : {getattr(solver, 'duration', 0):.4f} detik")
+    print(f"Iterasi: {solver.iterations}")
+    print("-"*30 + "\n")
 
-def print_menu():
-    print("\n" + "="*50)
-    print("      QUEENS PUZZLE SOLVER (Tucil 1 IF2211)")
-    print("="*50)
-    print("1. Solve from File")
-    print("2. Solve with CLI Visualization")
-    print("3. Run Assignment Example (9x9)")
-    print("4. Batch Testing (All files in test/)")
-    print("5. Generate Random Test Case")
-    print("6. Export Solution as Image")
-    print("7. Launch GUI")
-    print("8. Help")
-    print("0. Exit")
-
-def show_help():
-    print("\n" + "="*40)
-    print("           BANTUAN PENGGUNAAN")
-    print("="*40)
-    print("\n FORMAT INPUT FILE (.txt)")
-    print("   Gunakan huruf untuk mewakili warna wilayah.")
-    print("   Contoh (4x4):")
-    print("     AABB")
-    print("     AACC")
-    print("     DDEE")
-    print("     DDEE")
-    print("\n ATURAN PERMAINAN")
-    print("   - Satu Ratu per Baris")
-    print("   - Satu Ratu per Kolom")
-    print("   - Satu Ratu per Warna Wilayah")
-    print("   - Tidak boleh bersentuhan (8 arah mata angin)")
- 
+# --- Menu Functions ---
 
 def solve_file():
-    fname = input("Filename (contoh: test4x4.txt): ").strip()
+    print("\n--- SOLVE FROM FILE ---")
+    fname = input("Masukkan nama file input: ").strip()
     board = queenIO.read_board(fname)
-    if not board: return
+    
+    if not board: 
+        return
 
+    print(f"Solving {len(board)}x{len(board)}...")
     solver = QueenSolver(board)
     found, dur = solver.start_solving()
     
     if found:
-        # Auto save: namafile_sol.txt
-        base = os.path.basename(fname)
-        out_name = base.replace('.txt', '_sol.txt') if base.endswith('.txt') else base + "_sol.txt"
+        # 1. Tampilkan dulu di CLI (Sesuai request)
+        print_board_result(solver)
         
-        saved = queenIO.save_solution(solver, out_name)
-        print(f"Saved: {saved}")
+        # 2. Konfirmasi Save (Y/N)
+        confirm = input("Apakah ingin menyimpan solusi ke file? (y/n): ").lower().strip()
+        if confirm == 'y':
+            # 3. Bebas namain file
+            out_name = input("Masukkan nama file output (contoh: hasil.txt): ").strip()
+            if not out_name:
+                print("Nama file kosong, batal simpan.")
+            else:
+                saved_path = queenIO.save_solution(solver, out_name)
+                print(f"Berhasil disimpan di: {saved_path}")
+    else:
+        print("\nTidak ada solusi untuk konfigurasi ini.")
 
 def solve_viz():
-    fname = input("Filename: ").strip()
+    print("\n--- SOLVE WITH VISUALIZATION ---")
+    fname = input("Masukkan nama file input: ").strip()
     board = queenIO.read_board(fname)
     if not board: return
 
     if len(board) > 10:
-        print("Warning: Board besar mungkin lambat di terminal.")
-        input("Press Enter...")
+        print("[Info] Ukuran board besar, animasi mungkin lambat.")
+        input("Tekan Enter untuk lanjut...")
 
     solver = QueenSolver(board)
-    # Hook callback visualisasi baru
-    solver.viz_function = cli_callback
+    solver.viz_function = cli_callback # Hook animasi
     
     solver.start_solving()
     
     if solver.found:
-        print("\nSolusi Akhir:")
-        for r in solver.solution:
-            print(" ".join([" Q " if c else " . " for c in r]))
+        # Visualisasi selesai, tampilkan hasil final
+        print_board_result(solver)
+        
+        # Konfirmasi Save juga di sini
+        if input("Simpan solusi? (y/n): ").lower() == 'y':
+            out_name = input("Nama file output: ").strip()
+            if out_name:
+                saved = queenIO.save_solution(solver, out_name)
+                print(f"Saved: {saved}")
+
+def generate_test():
+    print("\n--- GENERATE RANDOM TEST CASE ---")
+    try:
+        n_input = input("Masukkan ukuran N (misal 8): ").strip()
+        if not n_input.isdigit():
+            print("Harus angka.")
+            return
+        n = int(n_input)
+        
+        # Bebas namain file input
+        out_name = input("Masukkan nama file output (misal: soal_baru.txt): ").strip()
+        if not out_name:
+            # Default fallback kalau user malas ngetik
+            out_name = f"test{n}x{n}.txt"
+            print(f"Menggunakan nama default: {out_name}")
+            
+        path = queenIO.generate_random_case(n, out_name)
+        # Path akan diprint oleh fungsi queenIO
+        
+    except ValueError:
+        print("Input error.")
 
 def run_assignment():
-    print("\nRunning Assignment 9x9 Case...")
-    # Data dari gambar soal
+    print("\nRunning Assignment 9x9...")
+    # Setup data dummy soal
     data = [
         "AAABBCCCD", "ABBBBCECD", "ABBBDCECD", "AAABDCCCD", "BBBBDDDDD",
         "FGGGDDHDD", "FGIGDDHDD", "FGIGDDHDD", "FGGGDDHHH"
     ]
-    
     path = "test/test9x9.txt"
-    # Tulis file sementara
-    with open(path, "w") as f:
-        f.write("\n".join(data))
+    with open(path, "w") as f: f.write("\n".join(data))
     
     board = queenIO.read_board(path)
     solver = QueenSolver(board)
     solver.start_solving()
     
     if solver.found:
-        saved = queenIO.save_solution(solver, "test9x9_sol.txt")
-        print(f"Solusi tersimpan: {saved}")
+        print_board_result(solver)
+        if input("Simpan? (y/n): ").lower() == 'y':
+            queenIO.save_solution(solver, "test9x9_sol.txt")
+            print("Saved test/solutions/test9x9_sol.txt")
 
 def export_image():
-    fname = input("Filename: ").strip()
+    print("\n--- EXPORT IMAGE ---")
+    fname = input("File input: ").strip()
     board = queenIO.read_board(fname)
     if not board: return
     
-    print("Solving...")
     solver = QueenSolver(board)
     found, _ = solver.start_solving(verbose=False)
     
     if found:
-        base = os.path.basename(fname).replace('.txt', '')
-        
-        # 1. Save TXT
-        txt_out = f"{base}_sol.txt"
-        path_txt = queenIO.save_solution(solver, txt_out)
-        print(f"[1] Text saved: {path_txt}")
-        
-        # 2. Save PNG
-        img_out = f"{base}_sol.png"
-        path_img = queenImage.save_board_image(solver.board, solver.solution, img_out)
-        print(f"[2] Image saved: {path_img}")
+        print("Solusi ditemukan.")
+        if input("Generate gambar? (y/n): ").lower() == 'y':
+            out_name = input("Nama file gambar (misal: hasil.png): ").strip()
+            path = queenImage.save_board_image(solver.board, solver.solution, out_name)
+            print(f"Gambar saved: {path}")
     else:
-        print("No solution found, cannot export image.")
+        print("No solution.")
+
+def print_menu():
+    print("\n" + "="*40)
+    print("   QUEENS SOLVER (Tucil 1 IF2211)")
+    print("="*40)
+    print("1. Solve File (CLI)")
+    print("2. Solve with Animation (CLI)")
+    print("3. Assignment Example (9x9)")
+    print("4. Batch Test (All files)")
+    print("5. Generate Random Test Case")
+    print("6. Export Image")
+    print("7. Launch GUI")
+    print("0. Exit")
 
 def main():
     while True:
@@ -169,30 +204,20 @@ def main():
         elif choice == '4':
             queenIO.run_batch_tests(QueenSolver)
         elif choice == '5':
-            try:
-                n_input = input("Size (N): ").strip()
-                if n_input.isdigit():
-                    queenIO.generate_random_case(int(n_input))
-                else:
-                    print("Masukkan angka yang benar.")
-            except ValueError:
-                print("Error input.")
+            generate_test()
         elif choice == '6':
             export_image()
         elif choice == '7':
             print("Launching GUI...")
-            # Import tk lokal agar tidak mengganggu jika user cuma mau CLI
             import tkinter as tk
             root = tk.Tk()
             app = queenGUI.QueensGUI(root)
             root.mainloop()
-        elif choice == '8':
-            show_help()
         elif choice == '0':
             print("Bye.")
             break
         else:
-            print("Pilihan tidak valid.")
+            print("Pilihan salah.")
         
         if choice != '7':
             input("\nPress Enter...")
