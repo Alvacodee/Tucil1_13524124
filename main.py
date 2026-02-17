@@ -16,8 +16,8 @@ except ImportError as e:
     print(f"Error Import: {e}")
     sys.exit(1)
 
-# --- Visualisasi CLI (Animasi) ---
-def cli_callback(row, col, placed, is_trying):
+# Visualisasi CLI
+def cli_callback(board, row, col, placed, is_trying):
     if not is_trying: return True 
     
     # Clear screen
@@ -30,37 +30,39 @@ def cli_callback(row, col, placed, is_trying):
         line = ""
         for c in range(n):
             if placed[r][c]:
-                line += " Q "
+                line += " # "
             elif r == row and c == col:
                 line += " ? " 
             else:
-                line += " . "
+                # Tampilkan Huruf Wilayah
+                line += f" {board[r][c]} "
         print(line)
         
     time.sleep(0.05) 
     return True
 
-# --- Fungsi Helper Tampilan ---
+# Fungsi Helper Tampilan
 def print_board_result(solver):
-    """Menampilkan hasil akhir board ke terminal"""
     print("\n" + "-"*30)
     print(f"HASIL AKHIR ({solver.n}x{solver.n})")
+    print(f"Legenda: # = Ratu, Huruf = Wilayah")
     print("-"*30)
     
     for r in range(solver.n):
         line = ""
         for c in range(solver.n):
             if solver.solution[r][c]:
-                line += " Q "
+                line += " # " # REVISI: Pakai # untuk Ratu
             else:
-                line += " . "
+                # Tampilkan Huruf Wilayah dari board asli
+                line += f" {solver.board[r][c]} "
         print(line)
     print("-"*30)
     print(f"Durasi : {getattr(solver, 'duration', 0):.4f} detik")
     print(f"Iterasi: {solver.iterations}")
     print("-"*30 + "\n")
 
-# --- Menu Functions ---
+# Menu Functions 
 
 def solve_file():
     print("\n--- SOLVE FROM FILE ---")
@@ -75,13 +77,12 @@ def solve_file():
     found, dur = solver.start_solving()
     
     if found:
-        # 1. Tampilkan dulu di CLI (Sesuai request)
+        # 1. Tampilkan dulu di CLI
         print_board_result(solver)
         
-        # 2. Konfirmasi Save (Y/N)
+        # 2. Konfirmasi Save
         confirm = input("Apakah ingin menyimpan solusi ke file? (y/n): ").lower().strip()
         if confirm == 'y':
-            # 3. Bebas namain file
             out_name = input("Masukkan nama file output (contoh: hasil.txt): ").strip()
             if not out_name:
                 print("Nama file kosong, batal simpan.")
@@ -102,15 +103,15 @@ def solve_viz():
         input("Tekan Enter untuk lanjut...")
 
     solver = QueenSolver(board)
-    solver.viz_function = cli_callback # Hook animasi
+    
+    # Hook animasi: Gunakan lambda untuk menyelipkan parameter 'board'
+    solver.viz_function = lambda r, c, p, t: cli_callback(board, r, c, p, t)
     
     solver.start_solving()
     
     if solver.found:
-        # Visualisasi selesai, tampilkan hasil final
         print_board_result(solver)
         
-        # Konfirmasi Save juga di sini
         if input("Simpan solusi? (y/n): ").lower() == 'y':
             out_name = input("Nama file output: ").strip()
             if out_name:
@@ -126,22 +127,18 @@ def generate_test():
             return
         n = int(n_input)
         
-        # Bebas namain file input
         out_name = input("Masukkan nama file output (misal: soal_baru.txt): ").strip()
         if not out_name:
-            # Default fallback kalau user malas ngetik
             out_name = f"test{n}x{n}.txt"
             print(f"Menggunakan nama default: {out_name}")
             
         path = queenIO.generate_random_case(n, out_name)
-        # Path akan diprint oleh fungsi queenIO
         
     except ValueError:
         print("Input error.")
 
 def run_assignment():
     print("\nRunning Assignment 9x9...")
-    # Setup data dummy soal
     data = [
         "AAABBCCCD", "ABBBBCECD", "ABBBDCECD", "AAABDCCCD", "BBBBDDDDD",
         "FGGGDDHDD", "FGIGDDHDD", "FGIGDDHDD", "FGGGDDHHH"
